@@ -107,8 +107,8 @@ class RoundedTriangle extends Triangle {
 class Drawer {
 	public function drawShape(Shape $Shape) {
 		$Shape->draw();
-		echo ' | obsah: ' . $Shape->getArea();
-		echo ' | obvod: ' . $Shape->getPerimeter();
+		echo ' | Area: ' . $Shape->getArea();
+		echo ' | Perimeter: ' . $Shape->getPerimeter();
 		echo '<br />';
 		return $this;
 	}
@@ -129,3 +129,12 @@ $Drawer
 	->drawShape($RoundedTriangle)
 	->drawShape($RedRoundedTriangle)
 	->drawShape($BlueRedTriangle);
+
+/*
+ * output:
+triangle(3, 4, 5) | obsah: 77.768888380894 | obvod: 12
+red-triangle(3, 4, 5) | obsah: 77.768888380894 | obvod: 12
+rounded-triangle(3, 4, 5, 0.5) | obsah: 38.884444190447 | obvod: 6
+red-rounded-triangle(3, 4, 5, 0.5) | obsah: 38.884444190447 | obvod: 6
+blue-red-triangle(3, 4, 5) | obsah: 77.768888380894 | obvod: 12
+ */
