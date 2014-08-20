@@ -6,6 +6,36 @@ interface Shape {
 	function draw();
 }
 
+class ColoredShape implements Shape {
+	/** @var Shape */
+	private $Shape;
+
+	private $color;
+
+	/**
+	 * @param Shape $Shape
+	 * @param string $color
+	 */
+	public function __construct(Shape $Shape, $color) {
+		$this->Shape = $Shape;
+		$this->color = $color;
+	}
+
+	public function draw() {
+		echo $this->color . '-';
+		$this->Shape->draw();
+	}
+
+	public function getArea() {
+		return $this->Shape->getArea();
+	}
+
+	public function getPerimeter() {
+		return $this->Shape->getPerimeter();
+	}
+
+}
+
 class Triangle implements Shape {
 	protected $a, $b, $c;
 
@@ -29,7 +59,7 @@ class Triangle implements Shape {
 	}
 }
 
-class RedTrianlge implements Shape {
+class RedTrianlge extends Triangle {
 	/** @var Triangle */
 	private $Triangle;
 
@@ -52,23 +82,23 @@ class RedTrianlge implements Shape {
 }
 
 class RoundedTriangle extends Triangle {
-	private $round;
+	private $roundCoeficient;
 
-	public function __construct($round, $a, $b, $c) {
-		$this->round = $round;
+	public function __construct($roundCoeficient, $a, $b, $c) {
+		$this->roundCoeficient = $roundCoeficient;
 		parent::__construct($a, $b, $c);
 	}
 
 	public function getArea() {
-		return parent::getArea() * $this->round;
+		return parent::getArea() * $this->roundCoeficient;
 	}
 
 	public function getPerimeter() {
-		return parent::getPerimeter() * $this->round;
+		return parent::getPerimeter() * $this->roundCoeficient;
 	}
 
 	public function draw() {
-		echo 'rounded-triangle(' . $this->a . ', ' . $this->b . ', ' . $this->c . ')';
+		echo 'rounded-triangle(' . $this->a . ', ' . $this->b . ', ' . $this->c . ', ' . $this->roundCoeficient . ')';
 	}
 }
 
@@ -87,12 +117,15 @@ class Drawer {
 $Triangle = new Triangle(3, 4, 5);
 $RedTriangle = new RedTrianlge($Triangle);
 
-$RoundedTriangle = new RoundedTriangle(5, 3, 4, 5);
+$RoundedTriangle = new RoundedTriangle(0.5, 3, 4, 5);
 $RedRoundedTriangle = new RedTrianlge($RoundedTriangle);
+
+$BlueRedTriangle = new ColoredShape($RedTriangle, 'blue');
 
 $Drawer = new Drawer();
 $Drawer
 	->drawShape($Triangle)
 	->drawShape($RedTriangle)
 	->drawShape($RoundedTriangle)
-	->drawShape($RedRoundedTriangle);
+	->drawShape($RedRoundedTriangle)
+	->drawShape($BlueRedTriangle);
