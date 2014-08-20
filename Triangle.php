@@ -6,6 +6,16 @@ interface Shape {
 	function draw();
 }
 
+class Drawer {
+	public function drawShape(Shape $Shape) {
+		$Shape->draw();
+		echo ' | Area: ' . $Shape->getArea();
+		echo ' | Perimeter: ' . $Shape->getPerimeter();
+		echo '<br />';
+		return $this;
+	}
+}
+
 class ColoredShape implements Shape {
 	/** @var Shape */
 	private $Shape;
@@ -99,18 +109,6 @@ class RoundedTriangle extends Triangle {
 
 	public function draw() {
 		echo 'rounded-triangle(' . $this->a . ', ' . $this->b . ', ' . $this->c . ', ' . $this->roundCoeficient . ')';
-	}
-}
-
-//***
-
-class Drawer {
-	public function drawShape(Shape $Shape) {
-		$Shape->draw();
-		echo ' | Area: ' . $Shape->getArea();
-		echo ' | Perimeter: ' . $Shape->getPerimeter();
-		echo '<br />';
-		return $this;
 	}
 }
 
