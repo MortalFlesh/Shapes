@@ -46,7 +46,7 @@ class Triangle implements Shape {
 	}
 
 	public function getArea() {
-		$s = $this->a + $this->b + $this->c;
+		$s = ($this->a + $this->b + $this->c) / 2;
 		return sqrt($s * ($s - $this->a) * ($s - $this->b) * ($s - $this->c));
 	}
 
@@ -124,17 +124,17 @@ $BlueRedTriangle = new ColoredShape($RedTriangle, 'blue');
 
 $Drawer = new Drawer();
 $Drawer
-	->drawShape($Triangle)
-	->drawShape($RedTriangle)
-	->drawShape($RoundedTriangle)
-	->drawShape($RedRoundedTriangle)
-	->drawShape($BlueRedTriangle);
+	->drawShape($Triangle)				// a = 3, b = 4, c = 5
+	->drawShape($RedTriangle)			// a = 3, b = 4, c = 5 | red
+	->drawShape($RoundedTriangle)		// a = 3, b = 4, c = 5, roundCoeficient = 0.5
+	->drawShape($RedRoundedTriangle)	// a = 3, b = 4, c = 5, roundCoeficient = 0.5 | red
+	->drawShape($BlueRedTriangle);		// a = 3, b = 4, c = 5 | blue | red
 
 /*
  * output:
-triangle(3, 4, 5) | Area: 77.768888380894 | Perimeter: 12
-red-triangle(3, 4, 5) | Area: 77.768888380894 | Perimeter: 12
-rounded-triangle(3, 4, 5, 0.5) | Area: 38.884444190447 | Perimeter: 6
-red-rounded-triangle(3, 4, 5, 0.5) | Area: 38.884444190447 | Perimeter: 6
-blue-red-triangle(3, 4, 5) | Area: 77.768888380894 | Perimeter: 12
+triangle(3, 4, 5) | Area: 6 | Perimeter: 12
+red-triangle(3, 4, 5) | Area: 6 | Perimeter: 12
+rounded-triangle(3, 4, 5, 0.5) | Area: 3 | Perimeter: 6
+red-rounded-triangle(3, 4, 5, 0.5) | Area: 3 | Perimeter: 6
+blue-red-triangle(3, 4, 5) | Area: 6 | Perimeter: 12
  */
